@@ -7,16 +7,81 @@
 
 #define COLD 0x010
 #define POISON 0x020
-#define POISON 0x040
-#define POISON 0x080
 
 #define COLD1 0x100
 #define POISON2 0x200
 #define POISON3 0x400
 #define POISON4 0x800
 
+#include <stdio.h>
+
 // 내가 지정한 구문을 특정 숫자로 치환한다. -> HUNGRY를 1로 바꾼다. 
 // 장점: 가독성(구문과 연결되는 숫자를 외울 필요가 없음), 유지 보수의 편리성(구문에 대응하는 숫자 바꾸기 편리)
+
+// 함수
+int Add(int left, int right)
+{
+	return left + right;
+}
+
+int Factorial(int _iNum)
+{	
+	int iValue = 1;
+	for (int j = 0; j < _iNum - 1; ++j)
+	{
+		iValue *= (j + 2);
+	}
+	return iValue;
+}
+
+// 재귀함수
+// 함수가 끝나기 전에 자기 자신을 호출하므로 동일한 함수가 스택으로 계속 쌓인다. -> 계속 쌓이면 stack overflow error 발생
+// 함수를 종료하기 위해서는 탈출 조건이 필요함. 
+// 가독성, 구현의 용이 but 성능이 떨어질 수 있음. 
+
+int Factorial_recursive(int _iNum)
+{	
+	if (1 == _iNum)
+	{
+		return 1;
+	}
+	return _iNum * Factorial_recursive(_iNum - 1);
+
+}
+
+// 피보나치 수열
+// 1 1 2 3 5 8 13
+int Fibonacci(int _iNum)
+{
+	if (1 == _iNum || 2 == _iNum)
+	{
+		return 1;
+	}
+
+	int iPrev1 = 1;
+	int iPrev2 = 1;
+	int iValue = 0;
+
+	for (int i = 0; i < _iNum - 2; ++i)
+	{
+		iValue = iPrev1 + iPrev2;
+		iPrev1 = iPrev2;
+		iPrev2 = iValue;
+	}
+
+	return iValue;
+}
+
+int Fibonacci_recursive(int _iNum)
+{
+	if (1 == _iNum || 2 == _iNum)
+	{
+		return 1;
+	}
+	
+	return Fibonacci_recursive(_iNum - 1) + Fibonacci_recursive(_iNum - 2);
+}
+
 
 int main()
 {
@@ -36,6 +101,7 @@ int main()
 	// 대입 연산자
 	// c = 256는 저장되지 않음. 0으로 들어온다. 아홉번째 1이 들어오지 않기 때문이다. 
 	// c = -1 넣으면 255로 보인다. 에러가 나지 않음. 
+
 	c = 0;
 	c = 255;
 
@@ -94,7 +160,6 @@ int main()
 
 	true;
 	false;
-	int truefalse = true; // truefalse = 1
 	
 	// bool 자료형: 0 or 1 (1byte), 참과 거짓만 다루는 자료형. 
 	bool truefalse = false;
@@ -191,6 +256,72 @@ int main()
 
 	// 특정 자리 비트 제거(조건 계산할 필요 없음) -> 없으면 없는대로 0이고 1이었던 것도 0으로 된다. 
 	isSTATUS &= ~THIRSTY; 
+
+	// 변수
+	// 1. 지역변수 
+	// 2. 전역변수 
+	// 3. 정적변수
+	// 4. 외부변수
+
+	// 지역변수
+	// 괄호 안에 선언된 변수(함수, 지역)69+-
+	{
+		// 변수명 규칙: 이름이 겹치는 경우 같은 지역에 있는 변수의 우선 순위가 높다. 
+		int iName = 100;
+		iName;
+	}
+
+	// 함수
+	data = Add(10, 20);
+
+	// 반복문
+	// for()
+		//for (/*반복자 초기화*/;/*반복자 조건체크*/;/*반복자 변경*/)
+		//{
+
+		//}
+
+	for (int i = 0; i < 6; ++i)
+	{
+
+		if (i % 2 == 1)
+		{
+			continue;
+		}
+
+		printf("Output i : %d \n", i);
+	}
+
+	// while()
+	int ii = 0;
+	while (ii < 2)
+	{
+		printf("Output Test\n");
+		ii++;
+		break;
+	}
+
+
+	// 콘솔
+	// printf
+	printf("abcd %f \n", 2.13f);
+	// scanf : 콘솔창으로 부터 입력을 받음. 
+	int iInput = 0;
+	scanf_s("%d", &iInput);
+
+	// 함수가 사용하는 메모리 영역 : 스택 메모리 영역
+	// nested function의 실행 순서는 선입후출의 stack과 비슷하다.
+	// 예를 들어, main 함수 호출하면 main 함수 안에서 호출하는 add가 실행 될 때 메모리 생겼다가 실행 완료 후 사라진다.
+	// 함수 안에 지역 변수를 설정할 수 있는 이유는 함수마다 메모리 공간이 다르기 때문이다. 
+	// 여러번 add를 호출하면 호출 할 때 마다 메모리 잡히고 실행 완료되면 함수 스택 사라진다.
+	// 함수와 함수간의 return값은 레지스터 메모리에 넣어두었다가 전달하는 방식
+
+	int iValue = Factorial(4);
+	iValue = Factorial_recursive(4);
+
+	iValue = Fibonacci(7);
+	iValue = Fibonacci_recursive(7);
+
 
 	return 0;
 }
