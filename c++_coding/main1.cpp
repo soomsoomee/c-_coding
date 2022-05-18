@@ -82,6 +82,25 @@ int Fibonacci_recursive(int _iNum)
 	return Fibonacci_recursive(_iNum - 1) + Fibonacci_recursive(_iNum - 2);
 }
 
+// 구조체: 사용자 정의 자료형
+typedef struct _tagMyST
+{
+	// 두 자료형이 묶여서 만들어진 자료형이므로 8바이트
+	int a;
+	float f;
+}MYST;
+
+typedef struct _tagBig
+{
+	// 구조체 안에 구조체가 포함될 수 있음
+	MYST k;
+	int i;
+	char c;
+}BIG;
+
+// int 자료형을 redefine
+typedef int INT;
+
 
 int main()
 {
@@ -264,7 +283,7 @@ int main()
 	// 4. 외부변수
 
 	// 지역변수
-	// 괄호 안에 선언된 변수(함수, 지역)69+-
+	// 괄호 안에 선언된 변수(함수, 지역)
 	{
 		// 변수명 규칙: 이름이 겹치는 경우 같은 지역에 있는 변수의 우선 순위가 높다. 
 		int iName = 100;
@@ -321,6 +340,30 @@ int main()
 
 	iValue = Fibonacci(7);
 	iValue = Fibonacci_recursive(7);
+
+	// 배열
+	// int 10개 묶음의 배열. {}로 초기화하는 경우 전부 0.
+	// 인덱스는 0부터 시작한다. 
+	// 배열은 연속적인 메모리 구조로 되어있다. 인덱스를 벗어나서 값을 넣는 경우 배열이 아니라 다른 변수의 메모리 침범해서 값이 들어갈 수도 있다. -> 이런 경우 오류를 못 잡을 수 있음.
+	int iArray[10] = { };
+	iArray[4] = 10;
+
+
+	// 구조체
+	MYST t;
+	int iSize = sizeof(MYST);
+	
+	// c에서는 구조체를 변수로 사용하려면 struct를 앞에 써주어야한다. 안 그러면 오류 발생. c++ 에서는 struct 사용하지 않아도 된다. 
+	struct _tagBig a;
+	// typedef를 통해 이름을 붙여서 사용하면 c, c++ 양쪽에서 사용할 수 있다. 
+	BIG b;
+
+	// 구조체 초기화 
+	MYST t = { };
+	MYST t = { 100, 3.14f };
+	t.a = 10;
+	t.f = 10.2312f;
+
 
 
 	return 0;
