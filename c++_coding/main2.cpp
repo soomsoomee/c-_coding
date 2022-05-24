@@ -14,8 +14,9 @@
 // 메모리 영역
 // 1. 스택 영역
 // 2. 데이터 영역
-// 3. 읽기 전용(코드, ROM)
+// 3. 읽기 전용(코드, ROM)%%%
 // 4. 힙 영역
+
 
 // 전역변수
 int g_i = 0; // Data 영역
@@ -47,7 +48,9 @@ int g_iExtern = 0;
 
 int Output(const int* pI)
 {
+
 	int i = *pI; // 값을 참고해서 사용할 수는 있지만 변경은 불가능 
+
 	return 0;
 }
 
@@ -61,6 +64,7 @@ unsigned int GetLength(const wchar_t* _pStr)
 	while (0 != _pStr[i])
 	{	
 		// 포인터는 데이터 타입 byte 만큼 증가한다. 
+
 		wchar_t c = _pStr[i];
 		 
 		++i;
@@ -80,6 +84,7 @@ void StrCat(wchar_t* _pDest, unsigned int _iBufferSize, const wchar_t* _pSrc)
 	int iDestLen = GetLength(_pDest);
 	int iSrcLen = GetLength(_pSrc);
 	if (_iBufferSize < iDestLen + iSrcLen + 1) // Null 문자 공간까지 계산
+
 	{
 		assert(nullptr);
 	}
@@ -102,6 +107,7 @@ int main()
 	g_iExtern = 500;
 	// 지역변수와 전역 변수의 차이: 함수를 반복해서 호출할 때 지역변수는 없어졌다 새로 생기지만 전역변수는 사라지지 않고 누적된다.
 	// 전역변수는 함수 안, 밖에서 호출할 수 있다. main함수 밖 메모리 영역에 존재하기 때문이다. -> 외부에서 건드리지 않기를 원할 때 사옹 가능. 
+
 	Test();
 	Test();
 	Test();
@@ -139,6 +145,7 @@ int main()
  	*(iArr + 1) = 10; // iArr[1] = 10;
 
 	// const
+
 	// l-value: 변수
 	// r-value: 상수
 	const int cint = 100;
@@ -155,6 +162,7 @@ int main()
 	const int* pConstInt = &x; // 포인터가 가리키는 원본이 상수화됨. 다른 변수를 가리키도록 바꾸는 것은 가능
 	int* const pIntConst = &x; // 포인터가 다른 변수를 가리키도록 바꿀 수 없음. 
 	// 초기화 시 가리킨 대상만 가리킴. 가리키는 원본을 수정할 수 없음. 
+  
 	const int* const pConstIntConst = nullptr;
 
 
@@ -177,6 +185,7 @@ int main()
 	// 2. 어떠한 타입의 변수의 주소든 다 저장 가능
 	// 3. 역참조 불가능. *pVoid 불가능. 
 	// 4. 주소 연산 불가능. pVoid+1 불가능
+
 	void* pVoid = nullptr;
 	{
 		int a = 0;
@@ -219,13 +228,16 @@ int main()
 		wchar_t szName[10] = L"Raimond"; // 문자열은 읽기 전용 메모리에 존재 
 
 		// 문자의 길이 확인하기. 길이를 확인하기 위해 문자의 주소를 전달하는데 값을 바꾸지 못하도록 const wchar*를 전달. 
+
 		int iLen = wcslen(szName);
 
 		int iLen2 = GetLength(szName);
 	}
 
 	{
+
 		// 문자열 이어 붙이기
+
 		wchar_t szString[100] = L"abc";
 
 		wcscat_s(szString, 100, L"def");
