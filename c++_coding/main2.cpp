@@ -95,6 +95,12 @@ void StrCat(wchar_t* _pDest, unsigned int _iBufferSize, const wchar_t* _pSrc)
 	}
 }
 
+typedef struct _tagMyST
+{
+	int    a; // 멤버
+	float  b;
+}MYST;
+
 
 int main()
 {
@@ -235,6 +241,16 @@ int main()
 	wchar_t szString[100] = L"abc";
 	StrCat(szString, 10, L"def");
 
+
+	// 구조체와 포인터
+	MYST sample = {};
+
+	MYST* pST = &sample;
+	(*pST).a = 100;
+	(*pST).b = 3.14f;
+
+	pST->a = 100;
+	pST->b = 3.14f;
 
 	return 0;
 }

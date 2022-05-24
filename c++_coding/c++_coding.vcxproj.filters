@@ -13,16 +13,34 @@
       <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
       <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
     </Filter>
+    <Filter Include="Array">
+      <UniqueIdentifier>{73f9deb7-cd74-42e1-acc0-ac123eaa79c8}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="LinkedList">
+      <UniqueIdentifier>{ea38593b-05a9-42e5-adef-d55ce1506e74}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main1.cpp">
       <Filter>헤더 파일</Filter>
     </ClCompile>
+    <ClCompile Include="func.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
     <ClCompile Include="main2.cpp">
       <Filter>헤더 파일</Filter>
     </ClCompile>
-    <ClCompile Include="func.cpp">
-      <Filter>소스 파일</Filter>
+    <ClCompile Include="main3.cpp">
+      <Filter>헤더 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="Arr.cpp">
+      <Filter>Array</Filter>
+    </ClCompile>
+    <ClCompile Include="main4.cpp">
+      <Filter>헤더 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="LinkedList.cpp">
+      <Filter>LinkedList</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -31,6 +49,12 @@
     </ClInclude>
     <ClInclude Include="common.h">
       <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="Arr.h">
+      <Filter>Array</Filter>
+    </ClInclude>
+    <ClInclude Include="LinkedList.h">
+      <Filter>LinkedList</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
