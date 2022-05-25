@@ -6,10 +6,10 @@
 void InitArr(tArr* _pArr)
 {
 
-	// 40byte Å©±âÀÇ Èü ¸Þ¸ð¸®¸¦ ¸¸µé°í int Æ÷ÀÎÅÍ·Î °­Á¦ Ä³½ºÆÃ.
+	// 8byte í¬ê¸°ì˜ íž™ ë©”ëª¨ë¦¬ë¥¼ ë§Œë“¤ê³  int í¬ì¸í„°ë¡œ ê°•ì œ ìºìŠ¤íŒ….
 	_pArr->pInt = (int*)malloc(sizeof(int)*2);
 	_pArr->iCount = 0;
-	// int¸¦ 40byte¿¡ ÀúÀåÇÏ¹Ç·Î ÃÖ´ë 10°³¸¦ ³ÖÀ» ¼ö ÀÖÀ½. 
+	// intë¥¼ 8byteì— ì €ìž¥í•˜ë¯€ë¡œ ìµœëŒ€ 2ê°œë¥¼ ë„£ì„ ìˆ˜ ìžˆìŒ. 
 	_pArr->iMaxCount = 2;
 
 }
@@ -17,37 +17,37 @@ void InitArr(tArr* _pArr)
 
 void Reallocate(tArr* _pArr)
 {
-	// µ¿ÀûÇÒ´çÀº ¿øÇÏ´Â À§Ä¡¿¡ ÀÌ¾î¼­ ÇÒ ¼ö ¾ø±â ‹š¹®¿¡ »õ·Î¿î °ø°£¿¡ Èü ¸Þ¸ð¸® ´Ù½Ã È®º¸ÇØ¾ß ÇÑ´Ù.
-	// 1. 2¹è ´õ Å« °ø°£À» µ¿ÀûÇÒ´çÇÑ´Ù. 
+	// ë™ì í• ë‹¹ì€ ì›í•˜ëŠ” ìœ„ì¹˜ì— ì´ì–´ì„œ í•  ìˆ˜ ì—†ê¸° ë•Œë¬¸ì— ìƒˆë¡œìš´ ê³µê°„ì— íž™ ë©”ëª¨ë¦¬ ë‹¤ì‹œ í™•ë³´í•´ì•¼ í•œë‹¤.
+	// 1. 2ë°° ë” í° ê³µê°„ì„ ë™ì í• ë‹¹í•œë‹¤. 
 	int* pNew = (int*)malloc(_pArr->iMaxCount * 2 * sizeof(int));
 
-	// 2. ±âÁ¸ °ø°£¿¡ ÀÖ´ø µ¥ÀÌÅÍµéÀ» »õ·Î ÇÒ´çÇÑ °ø°£À¸·Î º¹»ç½ÃÅ²´Ù.
+	// 2. ê¸°ì¡´ ê³µê°„ì— ìžˆë˜ ë°ì´í„°ë“¤ì„ ìƒˆë¡œ í• ë‹¹í•œ ê³µê°„ìœ¼ë¡œ ë³µì‚¬ì‹œí‚¨ë‹¤.
 	for (int i = 0; i < _pArr->iCount; ++i)
 	{
 		pNew[i] = _pArr->pInt[i];
 	}
 
-	// 3. ±âÁ¸ °ø°£Àº ¸Þ¸ð¸® ÇØÁ¦
+	// 3. ê¸°ì¡´ ê³µê°„ì€ ë©”ëª¨ë¦¬ í•´ì œ
 	free(_pArr->pInt);
 
-	// 4. ¹è¿­ÀÌ »õ·Î ÇÒ´çµÈ °ø°£À» °¡¸®Å°°Ô ÇÑ´Ù.
+	// 4. ë°°ì—´ì´ ìƒˆë¡œ í• ë‹¹ëœ ê³µê°„ì„ ê°€ë¦¬í‚¤ê²Œ í•œë‹¤.
 	_pArr->pInt = pNew;
 
-	// 5. MaxCount º¯°æÁ¡ Àû¿ë
+	// 5. MaxCount ë³€ê²½ì  ì ìš©
 	_pArr->iMaxCount *= 2;
 }
 
 
 void PushBack(tArr* _pArr, int _iData)
 {
-	// Èü ¿µ¿ª¿¡ÇÒ´çÇÑ °ø°£ÀÌ ´Ù Â÷´ÂÁö È®ÀÎ
+	// íž™ ì˜ì—­ì—í• ë‹¹í•œ ê³µê°„ì´ ë‹¤ ì°¨ëŠ”ì§€ í™•ì¸
 	if (_pArr->iMaxCount <= _pArr->iCount)
 	{
-		// ÀçÇÒ´ç
+		// ìž¬í• ë‹¹
 		Reallocate(_pArr);
 	}
 
-	// µ¥ÀÌÅÍ Ãß°¡
+	// ë°ì´í„° ì¶”ê°€
 	_pArr->pInt[_pArr->iCount++] = _iData;
 
 }
@@ -57,25 +57,25 @@ void ReleaseArr(tArr* _pArr)
 {
 	free(_pArr->pInt);
 	_pArr->iCount = 0;
-	// °¡¸®Å°´Â °ø°£ÀÌ ºñ¾îÀÖÀ¸´Ï±î ÃÖ´ë Ä«¿îÆ®µµ 0
+	// ê°€ë¦¬í‚¤ëŠ” ê³µê°„ì´ ë¹„ì–´ìžˆìœ¼ë‹ˆê¹Œ ìµœëŒ€ ì¹´ìš´íŠ¸ë„ 0
 	_pArr->iMaxCount = 0;
 
 }
 
 
-// ¹öºí Á¤·Ä
+// ë²„ë¸” ì •ë ¬
 void Sort(tArr* _pArr)
 {	
-	// µ¥ÀÌÅÍ°¡ 1°³ ÀÌÇÏ¸é Á¤·ÄÇÏÁö ¾ÊÀ½. 
+	// ë°ì´í„°ê°€ 1ê°œ ì´í•˜ë©´ ì •ë ¬í•˜ì§€ ì•ŠìŒ. 
 	if (_pArr->iCount <= 1)
 		return;
-	// ¿À¸§Â÷¼ø Á¤·Ä
+	// ì˜¤ë¦„ì°¨ìˆœ ì •ë ¬
 	
-	while (true) // ÀüÃ¼ ´Ù Á¤·ÄµÉ ¶§ ±îÁö ¹Ýº¹
+	while (true) // ì „ì²´ ë‹¤ ì •ë ¬ë  ë•Œ ê¹Œì§€ ë°˜ë³µ
 	{
 		bool bFinish = true;
 
-		// iCount - 1¸¸Å­ ºñ±³ÇÑ´Ù. 
+		// iCount - 1ë§Œí¼ ë¹„êµí•œë‹¤. 
 		int iLoop = _pArr->iCount - 1;
 		for (int i = 0; i < iLoop; ++i)
 		{
