@@ -140,6 +140,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="Arr.cpp" />
+    <ClCompile Include="CArr.cpp" />
     <ClCompile Include="func.cpp">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
     </ClCompile>
@@ -153,10 +154,14 @@
     <ClCompile Include="main3.cpp">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
     </ClCompile>
-    <ClCompile Include="main4.cpp" />
+    <ClCompile Include="main4.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="main5.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Arr.h" />
+    <ClInclude Include="CArr.h" />
     <ClInclude Include="common.h" />
     <ClInclude Include="func.h" />
     <ClInclude Include="LinkedList.h" />
