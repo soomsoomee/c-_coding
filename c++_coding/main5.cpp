@@ -1,5 +1,7 @@
 #include <iostream>
 #include "Arr.h"
+#include "CArr.h"
+#include "CList.h"
 
 
 struct tMy
@@ -56,6 +58,27 @@ public:
 	}
 
 };
+
+class CTest
+{
+private:
+	int a;
+
+public:
+	CTest()
+		: a(10)
+	{
+
+	}
+};
+
+
+template<typename T>
+T Add(T a, T b)
+{
+	return a + b;
+}
+
 
 
 int main()
@@ -114,7 +137,81 @@ int main()
 	CMy c3;
 	// 대임 실행시 대입 연산자가 실행된다. c2가 대입 연산자를 호출하므로 this에는 c2가 들어간다. _Other은 c3.
 	c = c2 = c3; // 뒤에서 부터 실행된다. c2=c3 실행되고 c=c2가 실행됨. 반환하는게 있어야 가능하다. c2(=this)를 반환해야함. 
+
+
+	// 구조체 ---> 클래스
+
+
+	// 객체지향 언어 특징
+	// 1. 캡슐화
+	// 기능을 수행하기 위해 필요한 멤버 선언, 묶음, 은닉성
+	// 멤버 함수들
+
+
+	// 2. 상속
+
+	// 3. 다형성
+
+	// 4. 추상화
+
+	// 구조체 버전 가변 배열 ---> 클래스 버전
 	
+
+	// c++ 동적할당 new, delete
+	// malloc으로 사용하는 경울 포인터를 사용해서 어떻게 사용할지를 지정해야 하지만, new는 자료형을 받아서 따로 지정할 필요 없음. 
+	CTest* pTest = new CTest;
+	// 어떤 객체를 가리키는 포인터인지 확인해서 소멸자 수행하도록 함. 
+	delete pTest;
+
+	// CArr 예시
+	/*tArr arr = {};
+	InitArr(&arr);
+
+	PushBack(&arr, 10);
+	PushBack(&arr, 20);
+	PushBack(&arr, 30);
+
+	ReleaseArr(&arr);*/
+
+
+	CArr<int> carr;
+	
+	carr.push_back(10);
+	carr.push_back(20);
+	carr.push_back(30);
+
+	// 지역변수라서 메인 함수 호출 시 소멸자 자동 실행되므로 메모리 해제 따로 할 필요 없음. 
+
+
+	// 반환 타입을 레퍼런스로 하면 원본 데이터와 동일시 되어 값을 바꿀 수 있다. 
+	int iData = carr[1];
+	carr[1] = 100;
+
+
+	// 함수 템플릿
+
+	// 자료형에 따라 비슷한 함수를 여러개 정의해야 하는 경우 
+	//int Add(int a, int b)
+	//{
+	//	return a + b;
+	//}
+
+	//float Add(float a, float b)
+	//{
+	//	return a + b;
+	//}
+
+	// 템플릿만 정의하고 사용하지 않으면 함수가 생성되지 않음. 템플릿은 그냥 틀.
+	int i = Add<int>(10, 20); // int 명시하지 않아도 입력, 반환 타입 보고 컴파일러가 적용하긴 함. 
+
+
+	// CList 예시
+	CList<float> list;
+
+	for (int i = 0; i < 4; ++i)
+	{
+		list.push_back(i);
+	}
 
 	return 0;
 }
