@@ -60,7 +60,7 @@ CList<T>::CList()
 	, m_iCount(0)
 {
 
-}
+};
 
 template<typename T>
 inline void CList<T>::push_back(const T& _data)
@@ -78,7 +78,7 @@ inline void CList<T>::push_back(const T& _data)
 	{
 		// 데이터가 1개 이상 입력된 경우
 		// 현재 가장 마지막 데이터(tail)을 저장하고 있는 노드와 새로 생성된 노드가 서로 가리키게 한다.
-		
+
 		m_pTail->pNext = pNewNode;
 		pNewNode->pPrev = m_pTail;
 
@@ -88,7 +88,7 @@ inline void CList<T>::push_back(const T& _data)
 
 	// 데이터 개수 증가
 	++m_iCount;
-}
+};
 
 template<typename T>
 inline void CList<T>::push_front(const T& _data)
@@ -103,7 +103,7 @@ inline void CList<T>::push_front(const T& _data)
 	m_pHead = pNewNode;
 
 	++m_iCount;
-}
+};
 
 template<typename T>
 CList<T>:: ~CList()
@@ -117,4 +117,4 @@ CList<T>:: ~CList()
 		pDeleteNode = pNext;
 
 	}
-}
+};
