@@ -272,6 +272,28 @@ int main()
 		cout << *myiter << endl;
 	}
 
+	// list iterator
+
+	CList<int> mylist;
+
+	mylist.push_back(100);
+	mylist.push_back(200);
+	mylist.push_back(300);
+	mylist.push_back(400);
+	mylist.push_back(500);
+
+	CList<int>::iterator listiter = mylist.begin();
+	i = *listiter;
+	*listiter = 150;
+	++listiter;
+
+	listiter = mylist.insert(listiter, 777);
+
+	for (listiter = mylist.begin(); listiter != mylist.end(); ++listiter)
+	{
+		cout << *listiter << endl;
+	}
+
 
 	return 0;
 }
