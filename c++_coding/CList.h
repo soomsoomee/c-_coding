@@ -177,7 +177,7 @@ inline void CList<T>::push_back(const T& _data)
 		m_pTail->pNext = pNewNode;
 		pNewNode->pPrev = m_pTail;
 
-		// List 마짐가 노드의 주소값을 새로 입력된 노드로 갱신한다.
+		// List 마지막 노드의 주소값을 새로 입력된 노드로 갱신한다.
 		m_pTail = pNewNode;
 	}
 
