@@ -19,6 +19,9 @@
     <Filter Include="LinkedList">
       <UniqueIdentifier>{ea38593b-05a9-42e5-adef-d55ce1506e74}</UniqueIdentifier>
     </Filter>
+    <Filter Include="BST">
+      <UniqueIdentifier>{985269a9-48c5-4bb2-bd55-663d6f4407ec}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main1.cpp">
@@ -54,6 +57,12 @@
     <ClCompile Include="main7.cpp">
       <Filter>헤더 파일</Filter>
     </ClCompile>
+    <ClCompile Include="main8.cpp">
+      <Filter>헤더 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="main9.cpp">
+      <Filter>헤더 파일</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="func.h">
@@ -73,6 +82,9 @@
     </ClInclude>
     <ClInclude Include="CList.h">
       <Filter>LinkedList</Filter>
+    </ClInclude>
+    <ClInclude Include="CBST.h">
+      <Filter>BST</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
